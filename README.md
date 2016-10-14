@@ -1,4 +1,4 @@
-# easy domain adding
+# Easy domain adding
 Add a site in just one command. This works only with apache I'm planning to add support for nginx later.
 
 ## Usage
