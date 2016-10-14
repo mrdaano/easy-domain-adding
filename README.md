@@ -12,6 +12,8 @@ You can also add a subdomain:
 ./addDomain.py -d example.com -s example
 ````
 
+Note: If you install it in the folder: **/usr/local/bin** you can call the script global by typing the commands above without ./
+
 ## TODO
 - Adding https/http2.0 support
 - Adding nginx support
