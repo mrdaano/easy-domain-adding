@@ -6,6 +6,7 @@ import shutil
 
 serverEmail = 'example@example.com'
 website = None
+customDir = "";
 
 def main(argv):
     checkRunAsRoot()
@@ -13,9 +14,10 @@ def main(argv):
     domain = None
     subdomain = None
     global website
+    global customDir
 
     try:
-        opts, args = getopt.getopt(argv, "hd:s:", ["domain=","subdomain="])
+        opts, args = getopt.getopt(argv, "hd:s:", ["domain=","subdomain=","root="])
     except getopt.GetoptError as error:
         print("\033[91mError: " + str(error) + " \033[0m")
         usage()
@@ -29,6 +31,8 @@ def main(argv):
             domain = arg
         elif opt in ("-s", "--subdomain"):
             subdomain = arg
+        elif opt == '--root':
+            customDir = "/" + str(arg)
 
     if not domain:
         usage()
@@ -58,9 +62,9 @@ def checkRunAsRoot():
 
 def makedirs(domain, subdomain):
     if not subdomain:
-        path = str("/var/www/") + str(domain) + str("/public_html")
+        path = str("/var/www/") + str(domain) + str("/public_html") + str(customDir)
     else:
-        path = str("/var/www/") + str(domain) + str("/subdomains/") + str(subdomain) + str("/public_html")
+        path = str("/var/www/") + str(domain) + str("/subdomains/") + str(subdomain) + str("/public_html") + str(customDir)
     if not os.path.exists(path):
         os.makedirs(path)
     else:
